@@ -1,5 +1,4 @@
 # FlipCards
-# FlipCards
 
 ## ✦ View the Flip Cards
 
