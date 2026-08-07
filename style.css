@@ -1,0 +1,326 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+
+  background: #f5f5f3;
+  color: #111;
+
+  overflow-x: hidden;
+}
+
+
+/* =========================================
+   SECTION
+========================================= */
+
+.card-deck-section {
+  width: 100%;
+  min-height: 100vh;
+
+  padding: 100px 40px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* =========================================
+   HEADING
+========================================= */
+
+.deck-heading {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.deck-eyebrow {
+  margin: 0 0 12px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.deck-heading h1 {
+  margin: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: clamp(42px, 7vw, 82px);
+  font-weight: 400;
+
+  line-height: 0.95;
+}
+
+.deck-subtitle {
+  margin: 22px auto 0;
+
+  max-width: 500px;
+
+  font-size: 15px;
+  line-height: 1.6;
+
+  color: #666;
+}
+
+
+/* =========================================
+   CARD DECK
+========================================= */
+
+.card-deck {
+  width: 100%;
+  max-width: 1200px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: clamp(20px, 4vw, 55px);
+}
+
+
+/* =========================================
+   CARD
+========================================= */
+
+.playing-card {
+  position: relative;
+
+  width: min(20vw, 250px);
+  aspect-ratio: 2 / 3;
+
+  perspective: 1400px;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+}
+
+.card-inner {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  transform-style: preserve-3d;
+
+  transition:
+    transform 0.75s cubic-bezier(0.2, 0.75, 0.2, 1),
+    filter 0.3s ease;
+
+  will-change: transform;
+}
+
+
+/* =========================================
+   CARD FACES
+========================================= */
+
+.card-face {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.16);
+
+  background: white;
+}
+
+.card-face img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+
+/* =========================================
+   FRONT
+========================================= */
+
+.card-front {
+  transform: rotateY(180deg);
+}
+
+
+/* =========================================
+   FLIPPED STATE
+========================================= */
+
+.playing-card.is-flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+
+/* =========================================
+   HOVER
+========================================= */
+
+@media (hover: hover) {
+
+  .playing-card:hover .card-inner {
+    transform:
+      translateY(-18px)
+      rotateZ(-2deg)
+      rotateY(8deg)
+      scale(1.025);
+  }
+
+  .playing-card.is-flipped:hover .card-inner {
+    transform:
+      translateY(-18px)
+      rotateZ(2deg)
+      rotateY(188deg)
+      scale(1.025);
+  }
+
+}
+
+
+/* =========================================
+   CARD ENTRY
+========================================= */
+
+.playing-card {
+  opacity: 0;
+  transform: translateY(45px);
+  animation: cardEntrance 0.8s ease forwards;
+}
+
+.playing-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.playing-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.playing-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.playing-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+@keyframes cardEntrance {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+
+  .card-deck-section {
+    padding: 80px 20px;
+  }
+
+  .card-deck {
+    display: grid;
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    max-width: 600px;
+
+    gap: 25px;
+  }
+
+  .playing-card {
+    width: 100%;
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .deck-heading {
+    margin-bottom: 45px;
+  }
+
+  .deck-heading h1 {
+    font-size: 48px;
+  }
+
+  .deck-subtitle {
+    font-size: 14px;
+  }
+
+  .card-deck {
+    gap: 15px;
+  }
+
+  .card-face {
+    border-radius: 8px;
+  }
+
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .playing-card {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .card-inner {
+    transition: none;
+  }
+
+}
