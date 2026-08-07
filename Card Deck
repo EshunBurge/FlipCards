@@ -12,76 +12,84 @@
     <!-- SOFTWARE DESIGN -->
     <a class="playing-card" href="/software-design/" aria-label="Software design">
       <div class="card-inner">
+
         <div class="card-face card-back">
           <img
-            src="https://raw.githubusercontent.com/YOUR-USERNAME/YOUR-REPO/main/card-back.png"
+            src="https://raw.githubusercontent.com/EshunBurge/FlipCards/main/cards-back.png"
             alt=""
           >
         </div>
 
         <div class="card-face card-front">
           <img
-            src="https://raw.githubusercontent.com/YOUR-USERNAME/YOUR-REPO/main/card-software.png"
+            src="https://raw.githubusercontent.com/EshunBurge/FlipCards/main/cards-software.png"
             alt="Ace of Hearts — Software Design"
           >
         </div>
+
       </div>
     </a>
 
     <!-- GRAPHIC DESIGN -->
     <a class="playing-card" href="/graphic-design/" aria-label="Graphic design">
       <div class="card-inner">
+
         <div class="card-face card-back">
           <img
-            src="https://raw.githubusercontent.com/YOUR-USERNAME/YOUR-REPO/main/card-back.png"
+            src="https://raw.githubusercontent.com/EshunBurge/FlipCards/main/cards-back.png"
             alt=""
           >
         </div>
 
         <div class="card-face card-front">
           <img
-            src="https://raw.githubusercontent.com/YOUR-USERNAME/YOUR-REPO/main/card-graphic-design.png"
+            src="https://raw.githubusercontent.com/EshunBurge/FlipCards/main/cards-graphic-design.png"
             alt="Ace of Spades — Graphic Design"
           >
         </div>
+
       </div>
     </a>
 
     <!-- SCIENCE PROJECTS -->
     <a class="playing-card" href="/science-projects/" aria-label="Science projects">
       <div class="card-inner">
+
         <div class="card-face card-back">
           <img
-            src="https://raw.githubusercontent.com/YOUR-USERNAME/YOUR-REPO/main/card-back.png"
+            src="https://raw.githubusercontent.com/EshunBurge/FlipCards/main/cards-back.png"
             alt=""
           >
         </div>
 
         <div class="card-face card-front">
           <img
-            src="https://raw.githubusercontent.com/YOUR-USERNAME/YOUR-REPO/main/card-science.png"
+            src="https://raw.githubusercontent.com/EshunBurge/FlipCards/main/cards-science.png"
             alt="Ace of Diamonds — Science Projects"
           >
         </div>
+
       </div>
     </a>
 
     <!-- JUST FOR FUN -->
     <a class="playing-card" href="/just-for-fun/" aria-label="Just for fun">
       <div class="card-inner">
+
         <div class="card-face card-back">
           <img
-            src="https://raw.githubusercontent.com/YOUR-USERNAME/YOUR-REPO/main/card-back.png"
+            src="https://raw.githubusercontent.com/EshunBurge/FlipCards/main/cards-back.png"
             alt=""
           >
         </div>
 
         <div class="card-face card-front">
           <img
-            src="https://raw.githubusercontent.com/YOUR-USERNAME/YOUR-REPO/main/card-fun.png"
+            src="https://raw.githubusercontent.com/EshunBurge/FlipCards/main/cards-fun.png"
             alt="Ace of Clubs — Just for Fun"
           >
         </div>
+
       </div>
     </a>
 
