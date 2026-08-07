@@ -1,117 +1,49 @@
-```html
-<!-- ============== CARD DECK ============== -->
-<section class="card-deck-section">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eshun Burge — Card Deck</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-  <div class="deck-heading">
-    <div class="deck-eyebrow">Choose Your Suit</div>
-    <h2>Explore My Deck</h2>
-  </div>
-
-  <div class="card-deck">
-
-    <!-- SOFTWARE DESIGN -->
-    <a
-      class="playing-card"
-      href="/software-design/"
-      aria-label="Software design"
-    >
-      <div class="card-inner">
-
-        <div class="card-face card-back">
-          <img
-            src="https://raw.githubusercontent.com/EshunBurge/FlipCards/main/cards-back.png"
-            alt=""
-          >
+  <!-- ============== CARD DECK ============== -->
+  <section class="card-deck-section">
+    <div class="deck-heading">
+      <div class="deck-eyebrow eb-reveal">Choose Your Suit</div>
+      <h2 class="eb-reveal" style="transition-delay:0.12s">Explore My Deck</h2>
+    </div>
+    <div class="card-deck">
+      <a class="playing-card" href="/software-design/" aria-label="Software design">
+        <div class="card-inner">
+          <div class="card-face card-back"><img src="https://eshun.net/wp-content/uploads/2026/07/cards-01.png" alt=""></div>
+          <div class="card-face card-front"><img src="https://eshun.net/wp-content/uploads/2026/07/cards-02.png" alt="Ace of Hearts — Software design"></div>
         </div>
-
-        <div class="card-face card-front">
-          <img
-            src="https://raw.githubusercontent.com/EshunBurge/FlipCards/main/cards-software.png"
-            alt="Ace of Hearts — Software design"
-          >
+      </a>
+      <a class="playing-card" href="/graphic-design/" aria-label="Graphic design">
+        <div class="card-inner">
+          <div class="card-face card-back"><img src="https://eshun.net/wp-content/uploads/2026/07/cards-01.png" alt=""></div>
+          <div class="card-face card-front"><img src="https://eshun.net/wp-content/uploads/2026/07/cards-03.png" alt="Ace of Spades — Graphic design"></div>
         </div>
-
-      </div>
-    </a>
-
-
-    <!-- GRAPHIC DESIGN -->
-    <a
-      class="playing-card"
-      href="/graphic-design/"
-      aria-label="Graphic design"
-    >
-      <div class="card-inner">
-
-        <div class="card-face card-back">
-          <img
-            src="https://raw.githubusercontent.com/EshunBurge/FlipCards/main/cards-back.png"
-            alt=""
-          >
+      </a>
+      <a class="playing-card" href="/science-projects/" aria-label="Science projects">
+        <div class="card-inner">
+          <div class="card-face card-back"><img src="https://eshun.net/wp-content/uploads/2026/07/cards-01.png" alt=""></div>
+          <div class="card-face card-front"><img src="https://eshun.net/wp-content/uploads/2026/07/cards-04.png" alt="Ace of Diamonds — Science projects"></div>
         </div>
-
-        <div class="card-face card-front">
-          <img
-            src="https://raw.githubusercontent.com/EshunBurge/FlipCards/main/cards-graphic-design.png"
-            alt="Ace of Spades — Graphic design"
-          >
+      </a>
+      <a class="playing-card" href="/just-for-fun/" aria-label="Just for fun">
+        <div class="card-inner">
+          <div class="card-face card-back"><img src="https://eshun.net/wp-content/uploads/2026/07/cards-01.png" alt=""></div>
+          <div class="card-face card-front"><img src="https://eshun.net/wp-content/uploads/2026/07/cards-05.png" alt="Ace of Clubs — Just for fun"></div>
         </div>
+      </a>
+    </div>
+  </section>
 
-      </div>
-    </a>
-
-
-    <!-- SCIENCE PROJECTS -->
-    <a
-      class="playing-card"
-      href="/science-projects/"
-      aria-label="Science projects"
-    >
-      <div class="card-inner">
-
-        <div class="card-face card-back">
-          <img
-            src="https://raw.githubusercontent.com/EshunBurge/FlipCards/main/cards-back.png"
-            alt=""
-          >
-        </div>
-
-        <div class="card-face card-front">
-          <img
-            src="https://raw.githubusercontent.com/EshunBurge/FlipCards/main/cards-science.png"
-            alt="Ace of Diamonds — Science projects"
-          >
-        </div>
-
-      </div>
-    </a>
-
-
-    <!-- JUST FOR FUN -->
-    <a
-      class="playing-card"
-      href="/just-for-fun/"
-      aria-label="Just for fun"
-    >
-      <div class="card-inner">
-
-        <div class="card-face card-back">
-          <img
-            src="https://raw.githubusercontent.com/EshunBurge/FlipCards/main/cards-back.png"
-            alt=""
-          >
-        </div>
-
-        <div class="card-face card-front">
-          <img
-            src="https://raw.githubusercontent.com/EshunBurge/FlipCards/main/cards-fun.png"
-            alt="Ace of Clubs — Just for fun"
-          >
-        </div>
-
-      </div>
-    </a>
-
-  </div>
-</section>
-```
+  <script src="script.js"></script>
+</body>
+</html>
