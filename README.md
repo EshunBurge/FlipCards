@@ -29,11 +29,11 @@ The card deck acts as a visual navigation section, allowing visitors to explore 
 * HTML
 * CSS
 * JavaScript
-* GitHub-hosted image assets
+* Adobe Illustrator
 
 ## ✦ Assets
 
-The card artwork is stored in this repository:
+The card artwork is stored in this repository and were designed by me on adobe illustrator:
 
 ```text
 cards-back.png
@@ -43,7 +43,6 @@ cards-science.png
 cards-fun.png
 ```
 
-The images are loaded directly from GitHub using `raw.githubusercontent.com`.
 
 ## ✦ Usage
 
