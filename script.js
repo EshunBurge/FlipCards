@@ -1,43 +1,118 @@
-document.addEventListener("DOMContentLoaded", () => {
+```javascript
+// ---------- CARD DECK ----------
 
-  const cards = document.querySelectorAll(".playing-card");
+(function () {
+
+  var deck = document.querySelector(".card-deck");
+  var cards = document.querySelectorAll(".playing-card");
+
+  if (!deck || !cards.length) return;
 
 
-  cards.forEach((card) => {
+  var reduceMotion =
+    window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
 
-    card.addEventListener("click", (event) => {
 
-      /*
-       * If the card has already been flipped,
-       * allow the link to work normally.
-       */
-      if (card.classList.contains("is-flipped")) {
-        return;
-      }
+  // Immediately show cards when reduced motion
+  // is enabled or IntersectionObserver is unavailable.
 
-      /*
-       * First click flips the card instead
-       * of immediately navigating away.
-       */
-      event.preventDefault();
+  function revealInstantly() {
 
-      /*
-       * Remove the flipped state from
-       * all other cards.
-       */
-      cards.forEach((otherCard) => {
-        if (otherCard !== card) {
-          otherCard.classList.remove("is-flipped");
-        }
-      });
+    deck.classList.add("in-view");
 
-      /*
-       * Flip the selected card.
-       */
-      card.classList.add("is-flipped");
-
+    cards.forEach(function (card) {
+      card.classList.add("is-floating");
     });
+
+  }
+
+
+  if (
+    reduceMotion ||
+    !("IntersectionObserver" in window)
+  ) {
+
+    revealInstantly();
+
+  } else {
+
+    var dealDuration = 850;
+    var maxStagger = 450;
+
+
+    var observer =
+      new IntersectionObserver(
+        function (entries) {
+
+          entries.forEach(function (entry) {
+
+            if (!entry.isIntersecting) return;
+
+
+            deck.classList.add("in-view");
+
+
+            setTimeout(function () {
+
+              cards.forEach(function (card) {
+                card.classList.add("is-floating");
+              });
+
+            }, dealDuration + maxStagger);
+
+
+            observer.unobserve(entry.target);
+
+          });
+
+        },
+        {
+          threshold: 0.35
+        }
+      );
+
+
+    observer.observe(deck);
+
+  }
+
+
+  // Desktop:
+  // hover automatically flips the card.
+  //
+  // Touch devices:
+  // first tap flips the card.
+  // The second tap follows the link.
+
+  var hasHover =
+    window.matchMedia(
+      "(hover: hover)"
+    ).matches;
+
+
+  if (hasHover) return;
+
+
+  cards.forEach(function (card) {
+
+    card.addEventListener(
+      "click",
+      function (event) {
+
+        if (!card.classList.contains("is-flipped")) {
+
+          event.preventDefault();
+
+          card.classList.add("is-flipped");
+
+        }
+
+      }
+    );
 
   });
 
-});
+})();
+```
