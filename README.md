@@ -1,6 +1,12 @@
 # FlipCards
 # FlipCards
 
+## ✦ View the Flip Cards
+
+https://eshun.net/flip-cards/
+
+## ✦ About
+
 An interactive playing-card deck designed for my personal portfolio.
 
 The card deck acts as a visual navigation section, allowing visitors to explore different areas of my work through four custom-designed playing cards.
