@@ -1,126 +1,234 @@
-/* =========================================
-   RESET
-========================================= */
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Helvetica Neue",
-    Arial,
-    sans-serif;
-
-  background: #f5f5f3;
-  color: #111;
-
-  overflow-x: hidden;
-}
-
-
-/* =========================================
-   SECTION
-========================================= */
+```css
+/* ---------- CARD DECK ---------- */
 
 .card-deck-section {
-  width: 100%;
-  min-height: 100vh;
-
-  padding: 100px 40px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  background: var(--bg);
+  padding: 3.5rem 1.5rem 4rem;
+  overflow: hidden;
 }
 
-
-/* =========================================
-   HEADING
-========================================= */
-
-.deck-heading {
+.card-deck-section .deck-heading {
   text-align: center;
-  margin-bottom: 70px;
+  margin: 0 auto 2.25rem;
 }
 
-.deck-eyebrow {
-  margin: 0 0 12px;
-
-  font-size: 12px;
-  font-weight: 700;
-
-  letter-spacing: 0.25em;
+.card-deck-section .deck-eyebrow {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.4em;
   text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.1rem;
 }
 
-.deck-heading h1 {
-  margin: 0;
-
-  font-family: Georgia, "Times New Roman", serif;
-
-  font-size: clamp(42px, 7vw, 82px);
+.card-deck-section h2 {
+  font-family: var(--serif);
   font-weight: 400;
-
-  line-height: 0.95;
-}
-
-.deck-subtitle {
-  margin: 22px auto 0;
-
-  max-width: 500px;
-
-  font-size: 15px;
-  line-height: 1.6;
-
-  color: #666;
+  letter-spacing: 0.02em;
+  font-size: clamp(3.4rem, 9vw, 7rem);
+  line-height: 1.15;
+  color: var(--ink-text);
+  margin: 0;
 }
 
 
-/* =========================================
-   CARD DECK
-========================================= */
+/* ---------- DECK ---------- */
 
 .card-deck {
-  width: 100%;
-  max-width: 1200px;
-
   display: flex;
+  flex-wrap: nowrap;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 
-  gap: clamp(20px, 4vw, 55px);
+  gap: clamp(0.6rem, 3vw, 3rem);
+
+  max-width: 1100px;
+  margin: 0 auto;
+
+  perspective: 1800px;
 }
 
 
-/* =========================================
-   CARD
-========================================= */
+/* ---------- INDIVIDUAL CARDS ---------- */
 
 .playing-card {
   position: relative;
+  display: block;
 
-  width: min(20vw, 250px);
-  aspect-ratio: 2 / 3;
+  width: clamp(90px, 22vw, 280px);
+  flex: 0 0 auto;
 
-  perspective: 1400px;
+  aspect-ratio: 872 / 1247;
 
   text-decoration: none;
+  outline-offset: 6px;
 
-  cursor: pointer;
+  opacity: 0;
 
-  flex-shrink: 0;
+  transform:
+    translateY(160px)
+    rotate(var(--deal-rot, 0deg))
+    scale(0.85);
 }
+
+
+/* ---------- GLOW ---------- */
+
+.playing-card::after {
+  content: "";
+
+  position: absolute;
+  inset: -8%;
+
+  border-radius: 8%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(127, 193, 234, 0.4) 0%,
+      transparent 70%
+    );
+
+  opacity: 0;
+
+  transition: opacity 0.4s ease;
+
+  z-index: -1;
+  pointer-events: none;
+}
+
+@media (hover: hover) {
+  .playing-card:hover::after {
+    opacity: 1;
+  }
+}
+
+.playing-card.is-flipped::after {
+  opacity: 1;
+}
+
+
+/* ---------- STARTING ROTATIONS ---------- */
+
+.playing-card:nth-child(1) {
+  --deal-rot: -12deg;
+}
+
+.playing-card:nth-child(2) {
+  --deal-rot: 6deg;
+}
+
+.playing-card:nth-child(3) {
+  --deal-rot: -6deg;
+}
+
+.playing-card:nth-child(4) {
+  --deal-rot: 12deg;
+}
+
+
+/* ---------- DEAL-IN ANIMATION ---------- */
+
+.card-deck.in-view .playing-card {
+  animation:
+    deal-in
+    0.85s
+    cubic-bezier(0.34, 1.56, 0.64, 1)
+    forwards;
+}
+
+.card-deck.in-view .playing-card:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.card-deck.in-view .playing-card:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.card-deck.in-view .playing-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.card-deck.in-view .playing-card:nth-child(4) {
+  animation-delay: 0.45s;
+}
+
+@keyframes deal-in {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(160px)
+      rotate(var(--deal-rot, 0deg))
+      scale(0.85);
+  }
+
+  70% {
+    opacity: 1;
+
+    transform:
+      translateY(-10px)
+      rotate(0deg)
+      scale(1.03);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      rotate(0deg)
+      scale(1);
+  }
+}
+
+
+/* ---------- FLOATING ---------- */
+
+.playing-card.is-floating {
+  animation:
+    card-float
+    6s
+    ease-in-out
+    infinite;
+}
+
+.playing-card.is-floating:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.playing-card.is-floating:nth-child(2) {
+  animation-delay: -1.5s;
+}
+
+.playing-card.is-floating:nth-child(3) {
+  animation-delay: -3s;
+}
+
+.playing-card.is-floating:nth-child(4) {
+  animation-delay: -4.5s;
+}
+
+@keyframes card-float {
+
+  0%,
+  100% {
+    transform:
+      translateY(0)
+      rotate(-1.2deg);
+  }
+
+  50% {
+    transform:
+      translateY(-16px)
+      rotate(1.2deg);
+  }
+}
+
+
+/* ---------- CARD INNER ---------- */
 
 .card-inner {
   position: relative;
@@ -128,199 +236,122 @@ body {
   width: 100%;
   height: 100%;
 
-  transform-style: preserve-3d;
-
   transition:
-    transform 0.75s cubic-bezier(0.2, 0.75, 0.2, 1),
-    filter 0.3s ease;
+    transform
+    0.7s
+    cubic-bezier(0.23, 1, 0.32, 1);
 
-  will-change: transform;
+  transform-style: preserve-3d;
 }
 
 
-/* =========================================
-   CARD FACES
-========================================= */
+/* Pause floating when interacting */
 
-.card-face {
-  position: absolute;
-
-  inset: 0;
-
-  width: 100%;
-  height: 100%;
-
-  border-radius: 12px;
-
-  overflow: hidden;
-
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-
-  box-shadow:
-    0 20px 45px rgba(0, 0, 0, 0.16);
-
-  background: white;
-}
-
-.card-face img {
-  display: block;
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
+.playing-card.is-floating:hover,
+.playing-card.is-floating.is-flipped {
+  animation-play-state: paused;
 }
 
 
-/* =========================================
-   FRONT
-========================================= */
+/* ---------- FLIP ---------- */
 
-.card-front {
-  transform: rotateY(180deg);
+@media (hover: hover) {
+  .playing-card:hover .card-inner {
+    transform: rotateY(180deg);
+  }
 }
-
-
-/* =========================================
-   FLIPPED STATE
-========================================= */
 
 .playing-card.is-flipped .card-inner {
   transform: rotateY(180deg);
 }
 
 
-/* =========================================
-   HOVER
-========================================= */
+/* ---------- CARD FACE ---------- */
 
-@media (hover: hover) {
+.card-face {
+  position: absolute;
+  inset: 0;
 
-  .playing-card:hover .card-inner {
-    transform:
-      translateY(-18px)
-      rotateZ(-2deg)
-      rotateY(8deg)
-      scale(1.025);
-  }
+  border-radius: 4%;
 
-  .playing-card.is-flipped:hover .card-inner {
-    transform:
-      translateY(-18px)
-      rotateZ(2deg)
-      rotateY(188deg)
-      scale(1.025);
-  }
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 
+  overflow: hidden;
+
+  filter:
+    drop-shadow(0 18px 22px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
 }
 
 
-/* =========================================
-   CARD ENTRY
-========================================= */
+/* ---------- IMAGE CROPPING ---------- */
 
-.playing-card {
-  opacity: 0;
-  transform: translateY(45px);
-  animation: cardEntrance 0.8s ease forwards;
-}
+.card-face img {
+  position: absolute;
 
-.playing-card:nth-child(1) {
-  animation-delay: 0.1s;
-}
+  top: -10.263%;
+  left: -18.807%;
 
-.playing-card:nth-child(2) {
-  animation-delay: 0.2s;
-}
+  width: 137.615%;
+  height: 120.289%;
 
-.playing-card:nth-child(3) {
-  animation-delay: 0.3s;
-}
+  max-width: none;
 
-.playing-card:nth-child(4) {
-  animation-delay: 0.4s;
-}
-
-@keyframes cardEntrance {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  display: block;
 }
 
 
-/* =========================================
-   MOBILE
-========================================= */
+/* ---------- FRONT / BACK ---------- */
 
-@media (max-width: 800px) {
+.card-back {
+  z-index: 2;
+}
 
-  .card-deck-section {
-    padding: 80px 20px;
-  }
-
-  .card-deck {
-    display: grid;
-
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-
-    max-width: 600px;
-
-    gap: 25px;
-  }
-
-  .playing-card {
-    width: 100%;
-  }
-
+.card-front {
+  transform: rotateY(180deg);
 }
 
 
-@media (max-width: 480px) {
+/* ---------- ACCESSIBILITY ---------- */
 
-  .deck-heading {
-    margin-bottom: 45px;
-  }
-
-  .deck-heading h1 {
-    font-size: 48px;
-  }
-
-  .deck-subtitle {
-    font-size: 14px;
-  }
-
-  .card-deck {
-    gap: 15px;
-  }
-
-  .card-face {
-    border-radius: 8px;
-  }
-
+.playing-card:focus-visible {
+  outline: 2px solid var(--accent);
 }
 
 
-/* =========================================
-   REDUCED MOTION
-========================================= */
+/* ---------- REDUCED MOTION ---------- */
 
 @media (prefers-reduced-motion: reduce) {
 
-  html {
-    scroll-behavior: auto;
-  }
-
   .playing-card {
-    animation: none;
     opacity: 1;
     transform: none;
+    animation: none;
   }
 
   .card-inner {
-    transition: none;
+    transition: transform 0.3s ease;
+  }
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 700px) {
+
+  .card-deck {
+    gap: 0.5rem;
+  }
+
+  .playing-card {
+    width: clamp(75px, 21vw, 150px);
+  }
+
+  .card-deck-section {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
   }
 
 }
+```
